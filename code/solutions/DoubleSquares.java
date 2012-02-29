@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-//Code is fine but not working properly
+//Code working on my system but didn't work properly at codeeval
 
 public class DoubleSquares {
 	
