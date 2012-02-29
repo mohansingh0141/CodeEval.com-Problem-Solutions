@@ -18,62 +18,39 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
 
+public class StringExistAtTheEnd {
 
-public class pangrams {
-
-	public static void pg(String s){
+	public static int isStringExistAtEnd(String a, String b){
 		
-		char data[]=s.toLowerCase().toCharArray();
-		int flag=1;
-		StringBuffer out=new StringBuffer("");
-		
-		Arrays.sort(data);
-		
-		HashMap<Character, Boolean> hmap=new HashMap<Character, Boolean>();
-		
-		for(int i=0;i<data.length;i++){
-			
-			hmap.put(data[i], true);
+		int len=b.length();
+		int templen=a.length();
+		String temp=null;
+		if(templen>=len){
+			 temp=a.substring(templen-len,templen);
 		}
-		int val=97;
-		char c;
 		
-		for(int i=1;i<=26;i++){
-			c=(char)val++;
-			if(hmap.get(c)==null){
-				out.append(c);
-				flag=1;
-			}
-			else{
-				flag=0;
-			}
-			
-		}
-		//System.out.println();
-		if(flag==0){
-			System.out.println("NULL");
+		if(b.equals(temp)){
+			return 1;
 		}
 		else{
-			System.out.println(out.toString());
-		}
-		
+			return 0;
+		}		
 	}
+	
 	public static void main(String[] args) throws IOException {
-		
-		File inFile=new File(args[0]);
+		File inFile=new File(args[0]); 
 		String data;
+		String[] splitsOne;
 		
-		BufferedReader in= new BufferedReader(new FileReader(inFile));
-		
+		BufferedReader in= new BufferedReader(new FileReader(inFile)); 
 		while((data=in.readLine())!=null){
-			
-			
-			pg(data);			
-			
-		}
+			splitsOne=data.split(",");
+			if(splitsOne.length==2){										 
+				System.out.println(isStringExistAtEnd(splitsOne[0], splitsOne[1]));
+			}
+		 }
+		
 
 	}
 

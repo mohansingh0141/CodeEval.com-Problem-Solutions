@@ -14,29 +14,44 @@
  * limitations under the License.
  */
 package code.solutions;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 
-public class LowerCase {
+public class BitTest {
 
-	
-	public static void main(String[] args) throws IOException {
+	public static boolean isBitsSame(int n, int p1,int p2){
+		p1=p1-1;
+		p2=p2-1;
+		int temp=(n >>> p1) & 1;
+		int temp2=(n >>> p2) & 1;
 		
-		File inFile=new File(args[0]);
-		String data;
+		int res= temp ^ temp2;
 		
-		BufferedReader in= new BufferedReader(new FileReader(inFile));
-		
-		while((data=in.readLine())!=null){
+		if(res==0){
 			
-			System.out.println(data.toLowerCase());
+			return true;
 			
+		}else{
 			
+			return false;
 		}
+		
+	}
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		File inFile=new File(args[0]); 
+		String data;	
+		String[] splits;
+		BufferedReader in= new BufferedReader(new FileReader(inFile)); 
+		while((data=in.readLine())!=null){			
+			splits=data.split(",");			 
+			System.out.println(isBitsSame(Integer.parseInt(splits[0]),Integer.parseInt(splits[1]),Integer.parseInt(splits[2])));
+			 
+		 }
+
 	}
 
 }

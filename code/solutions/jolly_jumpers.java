@@ -19,61 +19,49 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
 
 
-public class pangrams {
 
-	public static void pg(String s){
+public class jolly_jumpers {
+
+	public static String isJollyJumper(String[] nums){
 		
-		char data[]=s.toLowerCase().toCharArray();
-		int flag=1;
-		StringBuffer out=new StringBuffer("");
+		int diff[]=new int[nums.length-1];
+		int data[]=new int[nums.length-1];
+	
 		
+		for(int i=1;i<=nums.length-1;i++){
+			int diffSingle= Integer.parseInt(nums[i-1])-Integer.parseInt(nums[i]);
+			if(diffSingle<0){
+				diffSingle=diffSingle*(-1);
+			}
+			diff[i-1]=diffSingle;
+			data[i-1]=i;
+			
+		}
+		
+		Arrays.sort(diff);		
 		Arrays.sort(data);
 		
-		HashMap<Character, Boolean> hmap=new HashMap<Character, Boolean>();
-		
-		for(int i=0;i<data.length;i++){
+		if(Arrays.equals(data, diff)){
+			return "Jolly";
+		}else{
+			return "Not jolly";
+		}
 			
-			hmap.put(data[i], true);
-		}
-		int val=97;
-		char c;
-		
-		for(int i=1;i<=26;i++){
-			c=(char)val++;
-			if(hmap.get(c)==null){
-				out.append(c);
-				flag=1;
-			}
-			else{
-				flag=0;
-			}
-			
-		}
-		//System.out.println();
-		if(flag==0){
-			System.out.println("NULL");
-		}
-		else{
-			System.out.println(out.toString());
-		}
-		
 	}
+	
 	public static void main(String[] args) throws IOException {
 		
-		File inFile=new File(args[0]);
+		File inFile=new File(args[0]); 
 		String data;
-		
-		BufferedReader in= new BufferedReader(new FileReader(inFile));
-		
+		String splits[];
+		BufferedReader in= new BufferedReader(new FileReader(inFile)); 
 		while((data=in.readLine())!=null){
-			
-			
-			pg(data);			
-			
-		}
+			 splits=data.split(" ");
+			System.out.println(isJollyJumper(splits));
+			 
+		 }
 
 	}
 

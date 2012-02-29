@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2012 Mohan Singh.
  *
@@ -16,23 +15,19 @@
  */
 package code.solutions;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 
 public class FileSize {
 
-	public static void main(String[] args) throws IOException {
+	public static void getFileSize(String name){
 		
+		File file=new File(name);
+		System.out.println(file.length());
 		
+	}
+	public static void main(String[] args) {
 		
-		BufferedReader in= new BufferedReader(new InputStreamReader(System.in));
-		String name=in.readLine();
-		File inFile=new File(name);
-		
-		System.out.println(inFile.length());
+		getFileSize(args[0]);
 
 	}
 

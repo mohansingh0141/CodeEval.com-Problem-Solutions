@@ -14,29 +14,25 @@
  * limitations under the License.
  */
 package code.solutions;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 
-public class LowerCase {
+public class BinaryRepresentation {
 
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws NumberFormatException, IOException {
 		
-		File inFile=new File(args[0]);
+		File inFile=new File(args[0]); 
 		String data;
-		
-		BufferedReader in= new BufferedReader(new FileReader(inFile));
-		
+		BufferedReader in= new BufferedReader(new FileReader(inFile)); 
 		while((data=in.readLine())!=null){
 			
-			System.out.println(data.toLowerCase());
+			System.out.println(Integer.toBinaryString(Integer.parseInt(data)));
 			
-			
-		}
+		 }
 	}
 
 }

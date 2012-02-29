@@ -18,63 +18,55 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 
 
-public class pangrams {
-
-	public static void pg(String s){
+public class FirstNonRepeatedCharcter {
+	
+	public static char firstNonRepeatedChar(String s){
 		
-		char data[]=s.toLowerCase().toCharArray();
-		int flag=1;
-		StringBuffer out=new StringBuffer("");
+		HashMap<Character, Integer> map=new HashMap<Character, Integer>();
 		
-		Arrays.sort(data);
-		
-		HashMap<Character, Boolean> hmap=new HashMap<Character, Boolean>();
+		char[] data=s.toCharArray();
+		int count=0;
+		char c=' ';
 		
 		for(int i=0;i<data.length;i++){
 			
-			hmap.put(data[i], true);
-		}
-		int val=97;
-		char c;
-		
-		for(int i=1;i<=26;i++){
-			c=(char)val++;
-			if(hmap.get(c)==null){
-				out.append(c);
-				flag=1;
+			if(map.get(data[i])!=null){
+				count=map.get(data[i]);
+				map.put(data[i],++count);
 			}
 			else{
-				flag=0;
+				map.put(data[i], 1);
 			}
 			
 		}
-		//System.out.println();
-		if(flag==0){
-			System.out.println("NULL");
+		
+		for(int i=0;i<data.length;i++){
+			
+			if(map.get(data[i])==1){
+				c=data[i];
+				return c;
+			}
+			
 		}
-		else{
-			System.out.println(out.toString());
-		}
+		return c;
 		
 	}
+
+	
 	public static void main(String[] args) throws IOException {
 		
-		File inFile=new File(args[0]);
-		String data;
-		
-		BufferedReader in= new BufferedReader(new FileReader(inFile));
-		
+		File inFile=new File(args[0]); 
+		String data;		
+		BufferedReader in= new BufferedReader(new FileReader(inFile)); 
 		while((data=in.readLine())!=null){
-			
-			
-			pg(data);			
-			
-		}
-
+			 
+			System.out.println(firstNonRepeatedChar(data));
+			 
+		 }
+		
 	}
 
 }
